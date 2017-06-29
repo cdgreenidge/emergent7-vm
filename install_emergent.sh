@@ -141,36 +141,36 @@ echo "==> Installing build dependencies"
 install_deps
 
 echo "==> Downloading Subversion 1.8.17 to /usr/local/src"
-#download_svn
+download_svn
 
 echo "==> Installing Subversion 1.8.17 to /usr/local"
-# install_svn
+install_svn
 
 echo "==> Downloading Qt5.2.1"
-# download_qt
+download_qt
 
 echo "==> Installing Qt5.2.1 to /opt/Qt5.2.1"
-# install_qt
+install_qt
 
 echo "==> Downloading Open Dynamics Engine to /usr/local/src"
-# download_ode
+download_ode
 
 echo "==> Installing Open Dynamics Engine to /usr/local"
-#install_ode
+install_ode
 
 echo "==> Downloading Quarter to /usr/local/src"
-# download_quarter
+download_quarter
 
 echo "==> Installing Quarter to /usr/local"
-# install_quarter
+install_quarter
 
 echo "==> Downloading Emergent to /usr/local/src"
-# download_emergent
+download_emergent
 
 echo "==> Installing Emergent to /usr/local"
 install_emergent
 
 echo "==> Tying up loose ends"
-# loose_ends
+loose_ends
 
 echo "==> Success!"
