@@ -52,7 +52,7 @@ Once the scripts finish, which could take several hours, restart the
 VM:
 
 ```
-$ vagrant haltp
+$ vagrant halt
 $ vagrant up
 ```
 
