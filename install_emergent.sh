@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+# This script installs Emergent 7.0.1 and its dependencies.
+
 # The directory in which to install Quarter and Emergent. If you change this,
 # be sure to update emergent.desktop (the desktop shortcut) as well.
 export PREFIX=/usr/local
@@ -25,19 +27,24 @@ libxi-dev libxrender-dev libxcb1-dev libx11-xcb-dev libxcb-glx0-dev \
 libxcb-keysyms1-dev libxcb-image0-dev libxcb-shm0-dev libxcb-icccm4-dev \
 libxcb-sync0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-randr0-dev \
 libxcb-render-util0-dev xvfb libncurses-dev libsqlite3-dev \
-libgstreamer-plugins-base0.10-dev"
+libgstreamer-plugins-base0.10-dev libapr1-dev libaprutil1-dev libserf-dev \
+libserf-1-1 subversion"
     apt-get update
     apt-get install $DEPS -y
 }
 
 
 download_qt() {
-    wget \
+    cd /vagrant
+    ls
+    wget --progress=bar:force:noscroll \
 https://download.qt.io/archive/qt/5.2/5.2.1/qt-opensource-linux-x64-5.2.1.run
+    chmod +x qt-opensource-linux-x64-5.2.1.run
 }
 
 
 install_qt() {
+    cd /vagrant
     # Start a virtual X framebuffer to keep the QT installer happy
     Xvfb :10 -ac -screen 0 1024x768x24 &
     PID=$!
@@ -51,7 +58,8 @@ install_qt() {
 download_svn() {
     mkdir -p /usr/local/src/tars
     cd /usr/local/src/tars
-    wget http://mirror.nexcess.net/apache/subversion/subversion-1.8.17.tar.gz
+    wget --progress=bar:force:noscroll \
+http://mirror.nexcess.net/apache/subversion/subversion-1.8.17.tar.gz
     cd ..
     tar -xzf tars/subversion-1.8.17.tar.gz
 }
@@ -61,6 +69,9 @@ install_svn() {
     cd /usr/local/src/subversion-1.8.17
     ./configure --prefix=$PREFIX
     make -j4 && make install
+    # Our svn is built without HTTP(S) support, so default to the system binary
+    # We only need our build for the libraries.
+    rm /usr/local/bin/svn
 }
 
 
@@ -69,7 +80,7 @@ install_svn() {
 download_ode() {
     mkdir -p /usr/local/src/tars
     cd /usr/local/src/tars
-    wget \
+    wget --progress=bar:force:noscroll \
 https://downloads.sourceforge.net/project/opende/ODE/0.13/ode-0.13.tar.bz2
     cd ..
     tar -xjf tars/ode-0.13.tar.bz2
@@ -127,9 +138,11 @@ loose_ends() {
     echo "export LD_LIBRARY_PATH=$PREFIX/lib:"'$LD_LIBRARY_PATH' \
          >> ~/.bashrc
     echo "export PATH=$PREFIX/bin:"'$PATH' >> ~/.bashrc
+    echo "export QTDIR=$QTDIR" >> ~/.bashrc
 
-    # Create shortcut on desktop
+    # Create shortcuts
     ln -s /vagrant ~/Desktop/vagrant
+    ln -s /vagrant ~/vagrant
     ln -s $PREFIX/bin/emergent ~/Desktop/emergent
 
     # Rebuild the dynamic library cache
@@ -173,4 +186,4 @@ install_emergent
 echo "==> Tying up loose ends"
 loose_ends
 
-echo "==> Success!"
+echo "==> Finished!"
