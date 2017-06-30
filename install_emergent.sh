@@ -141,9 +141,10 @@ loose_ends() {
     echo "export QTDIR=$QTDIR" >> ~/.bashrc
 
     # Create shortcuts
+    mkdir -p /home/ubuntu/Desktop
     ln -s /vagrant /home/ubuntu/Desktop/vagrant
     ln -s /vagrant /home/ubuntu/vagrant
-    ln -s $PREFIX/bin/emergent ~/Desktop/emergent
+    ln -s $PREFIX/bin/emergent /home/ubuntu/Desktop/emergent
 
     # Rebuild the dynamic library cache
     ldconfig
