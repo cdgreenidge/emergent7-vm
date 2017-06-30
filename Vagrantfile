@@ -63,7 +63,7 @@ Vagrant.configure("2") do |config|
   # Install xfce and virtualbox additions
   config.vm.provision "shell", path: "setup_vm.sh"
   # Install Emergent
-  config.vm.provision "shell", path: "install_emergent.sh"
+  # config.vm.provision "shell", path: "install_emergent.sh"
 
   # View the documentation for the provider you are using for more
   # information on available options.

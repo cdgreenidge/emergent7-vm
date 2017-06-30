@@ -21,7 +21,7 @@ and run `make && make install` to rebuild.)
 
 You will need to install [Vagrant](https://www.vagrantup.com) and
 [VirtualBox](https://www.virtualbox.org). If you use macOS and have
-[Hombrew](https://brew.sh), installed (*highly* recommended), you can
+[Hombrew](https://brew.sh) installed (*highly* recommended), you can
 do this with the following command:
 
 ```shell
@@ -44,7 +44,7 @@ some scripts. To provision a virtual machine with Emergent7 installed,
 run both of these commands from the `emergent7-vm` directory:
 
 ```
-$ vagrant plugin install vagrant-disksize
+$ vagrant plugin install vagrant-disksize vagrant-vbguest
 $ vagrant up
 ```
 
@@ -83,7 +83,7 @@ Here is what all the scripts are for:
 
 - *Vagrantfile*: Contains the VM configuration.
 - *install_emergent.sh*: Installs Emergent (and all of its dependencies).
-- *setup_vm.sh*: Updates the VM and installs VirtualBox guest additions.
+- *setup_vm.sh*: Updates the VM and fixes permissions.
 - *qt-installer.qs*: Automates the QT installer interface so it can be run
   in a script.
 
@@ -108,7 +108,7 @@ $ vagrant destroy
 ```
 
 Now, uninstall Vagrant and VirtualBox. If you used Homebrew to install them, you
-can execute
+can do this with
 
 ```
 $ brew cask uninstall vagrant virtualbox
