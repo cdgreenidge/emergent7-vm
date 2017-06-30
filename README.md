@@ -12,6 +12,10 @@ and run `make && make install` to rebuild.)
 
 ### Prerequisites
 
+> **Note**: You will need a cursory knowledge of the command line to use this
+> software. If you are not familiar with the command line, you can find a
+> crash course [here](https://learnpythonthehardway.org/book/appendixa.html).
+
 > **Warning**: The VM needs at least 4GB of memory to build Emergent. Your
 > computer should have >8GB to run the VM comfortably.
 
@@ -31,6 +35,9 @@ Clone this repository anywhere:
 ```shell
 $ git clone https://github.com/cdgreenidge/emergent7-vm
 ```
+
+If you're not comfortable with Git you can also download a zip file using the
+"Clone or Download" button at the top right.
 
 Inside the `emergent7-vm` directory you will find a `Vagrantfile` and
 some scripts. To provision a virtual machine with Emergent7 installed,
