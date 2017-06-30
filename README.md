@@ -60,7 +60,8 @@ $ vagrant up
 
 There are two ways to start the VM:
 
-1. Excute `vagrant up` from the `emergent7-vm` folder (recommended).
+1. Excute `vagrant up` from the `emergent7-vm` folder (recommended so that
+   synced folders work).
 2. Start the `vagrant-emergent7-01_default...` VM from the VirtualBox interface.
 
 Once you have started the VM, login with the following credentials:
