@@ -34,26 +34,6 @@ libserf-1-1 subversion"
 }
 
 
-download_qt() {
-    cd /vagrant
-    ls
-    wget --progress=bar:force:noscroll \
-https://download.qt.io/archive/qt/5.2/5.2.1/qt-opensource-linux-x64-5.2.1.run
-    chmod +x qt-opensource-linux-x64-5.2.1.run
-}
-
-
-install_qt() {
-    cd /vagrant
-    # Start a virtual X framebuffer to keep the QT installer happy
-    Xvfb :10 -ac -screen 0 1024x768x24 &
-    PID=$!
-    DISPLAY=:10 ./qt-opensource-linux-x64-5.2.1.run --script qt-installer.qs
-    kill -15 $PID
-    rm qt-opensource-linux-x64-5.2.1.run
-}
-
-
 # Emergent depends on SVN 1.8.x, but Xenial only provides 1.9+ in repos
 download_svn() {
     mkdir -p /usr/local/src/tars
@@ -72,6 +52,26 @@ install_svn() {
     # Our svn is built without HTTP(S) support, so default to the system binary
     # We only need our build for the libraries.
     rm /usr/local/bin/svn
+}
+
+
+download_qt() {
+    cd /vagrant
+    ls
+    wget --progress=bar:force:noscroll \
+https://download.qt.io/archive/qt/5.2/5.2.1/qt-opensource-linux-x64-5.2.1.run
+    chmod +x qt-opensource-linux-x64-5.2.1.run
+}
+
+
+install_qt() {
+    cd /vagrant
+    # Start a virtual X framebuffer to keep the QT installer happy
+    Xvfb :10 -ac -screen 0 1024x768x24 &
+    PID=$!
+    DISPLAY=:10 ./qt-opensource-linux-x64-5.2.1.run --script qt-installer.qs
+    kill -15 $PID
+    rm qt-opensource-linux-x64-5.2.1.run
 }
 
 
@@ -141,8 +141,8 @@ loose_ends() {
     echo "export QTDIR=$QTDIR" >> ~/.bashrc
 
     # Create shortcuts
-    ln -s /vagrant ~/Desktop/vagrant
-    ln -s /vagrant ~/vagrant
+    ln -s /vagrant /home/ubuntu/Desktop/vagrant
+    ln -s /vagrant /home/ubuntu/vagrant
     ln -s $PREFIX/bin/emergent ~/Desktop/emergent
 
     # Rebuild the dynamic library cache
