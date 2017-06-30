@@ -7,7 +7,7 @@ and uses it to build [Emergent
 Why a VM? Emergent 7.0.1 is near impossible to build from source on
 modern platforms.  This automates the process and makes it impervious
 to OS and dependency updates. It also makes it easy to modify the
-Emergent source code (just edit the code in `/usr/src/emergent-7.0.1`,
+Emergent source code (just edit the code in `/usr/local/src/emergent-7.0.1`,
 and run `make && make install` to rebuild.)
 
 ### Prerequisites
@@ -52,7 +52,7 @@ Once the scripts finish, which could take several hours, restart the
 VM:
 
 ```
-$ vagrant halt
+$ vagrant haltp
 $ vagrant up
 ```
 
