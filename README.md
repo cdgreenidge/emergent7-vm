@@ -16,8 +16,9 @@ and run `make && make install` to rebuild.)
 > computer should have >8GB to run the VM comfortably.
 
 You will need to install [Vagrant](https://www.vagrantup.com) and
-[VirtualBox](https://www.virtualbox.org). If you are on OSX and have
-Homebrew, installed, you can do this with the following command:
+[VirtualBox](https://www.virtualbox.org). If you use macOS and have
+[Hombrew](https://brew.sh), installed (*highly* recommended), you can
+do this with the following command:
 
 ```shell
 $ brew cask install vagrant virtualbox
