@@ -25,8 +25,15 @@ You will need to install [Vagrant](https://www.vagrantup.com) and
 do this with the following command:
 
 ```shell
-$ brew cask install vagrant virtualbox
+$ brew cask install vagrant
 ```
+
+Normally we would also install VirtualBox with `brew cask install virtualbox`,
+but as of 2017-07-01 there is a bug in VirtualBox 5.1.22 that prevents shared
+folders from working properly. For now, download and install VirtualBox 5.1.18
+from (this web page)[https://www.virtualbox.org/wiki/Download_Old_Builds_5_1].
+Note that VirtualBox will prompt you for updates; if you install them, it will
+break shared folder support. This page will be updated once a fix is released.
 
 ### Getting Started
 
@@ -44,7 +51,7 @@ some scripts. To provision a virtual machine with Emergent7 installed,
 run both of these commands from the `emergent7-vm` directory:
 
 ```
-$ vagrant plugin install vagrant-disksize
+$ vagrant plugin install vagrant-disksize vagrant-vbguest
 $ vagrant up
 ```
 
