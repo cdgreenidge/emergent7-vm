@@ -5,7 +5,7 @@
 echo "==> Installing desktop environment"
 apt-get update
 apt-get upgrade -y
-apt-get install ubuntu-desktop -y
+apt-get install ubuntu-desktop virtualbox-guest-x11 -y
 
 # Set password for Ubuntu user to ubuntu so we can login
 echo ubuntu:ubuntu | chpasswd

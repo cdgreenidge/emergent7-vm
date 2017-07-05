@@ -44,7 +44,7 @@ some scripts. To provision a virtual machine with Emergent7 installed,
 run both of these commands from the `emergent7-vm` directory:
 
 ```
-$ vagrant plugin install vagrant-disksize vagrant-vbguest
+$ vagrant plugin install vagrant-disksize
 $ vagrant up
 ```
 
