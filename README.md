@@ -1,14 +1,16 @@
 # emergent7-vm
 
-This project uses Vagrant to create an Ubuntu 16.04 virtual machine,
-and uses it to build [Emergent
-7.0.1](https://grey.colorado.edu/emergent/index.php/Main_Page) from source.
+This project contains a Lbuntu 16.04 virtual machine, with a copy
+of
+[Emergent 7.0.1](https://grey.colorado.edu/emergent/index.php/Main_Page) built
+from source.
 
 Why a VM? Emergent 7.0.1 is near impossible to build from source on
-modern platforms.  This automates the process and makes it impervious
-to OS and dependency updates. It also makes it easy to modify the
-Emergent source code (just edit the code in `/usr/local/src/emergent-7.0.1`,
-and run `make && make install` to rebuild.)
+modern platforms.  These scripts automate the process and make it
+impervious to OS and dependency updates. It is also easy to modify the
+Emergent source code (just edit the code in
+`/usr/local/src/emergent-7.0.1`, and run `make && make install` to
+rebuild.)
 
 ### Prerequisites
 You need to install [VirtualBox](https://www.virtualbox.org). If you have a Mac
