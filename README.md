@@ -1,6 +1,6 @@
 # emergent7-vm
 
-This project contains a Lbuntu 16.04 virtual machine, with a copy
+This project contains a Lubuntu 16.04 virtual machine, with a copy
 of
 [Emergent 7.0.1](https://grey.colorado.edu/emergent/index.php/Main_Page) built
 from source.
