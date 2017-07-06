@@ -67,6 +67,12 @@ https://download.qt.io/archive/qt/5.2/5.2.1/qt-opensource-linux-x64-5.2.1.run
 install_qt() {
     cd $SCRIPTDIR
     ./qt-opensource-linux-x64-5.2.1.run --script qt-installer.qs
+    rm qt-opensource-linux-x64-5.2.1.run
+
+    # Add the library directory to the LD config You still need to run
+    # sudo ldconfig to rebuild the cache, this is done
+    # post-installation
+    echo "$QTDIR/lib" >> /etc/ld.so.conf
 }
 
 
@@ -134,10 +140,6 @@ loose_ends() {
          >> ~/.bashrc
     echo "export PATH=$PREFIX/bin:"'$PATH' >> ~/.bashrc
     echo "export QTDIR=$QTDIR" >> ~/.bashrc
-
-    # Create shortcuts
-    mkdir -p /home/ubuntu/Desktop
-    ln -s $PREFIX/bin/emergent /home/ubuntu/Desktop/emergent
 
     # Rebuild the dynamic library cache
     ldconfig

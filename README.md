@@ -24,11 +24,14 @@ $ brew cask install virtualbox
 **Step 1:** Download the VM image here. (TODO: make link)
 
 **Step 2:** Import the image into VirtualBox. From the VirtualBox home screen,
+select *File* > *Import Appliance*. Choose the VM image and accept the default
+options.
 
 **Step 3:** Start the VM by double-clicking it on the VirtualBox home screen.
 
-**Step 4:** Add a shared folder. To access files on your computer, you can share
-a folder between the host and guest operating systems. With the VM running,
+**Step 4:** Add a shared folder to access files on the host system.
+
+With the VM running,
 click *Devices* > *Shared Folders* > *Shared Folder Settings*. Click the small
 plus sign to add a shared folder. Make sure to check the "Read only" and "Make
 permanent" checkboxes.
@@ -52,10 +55,8 @@ username: ubuntu
 password: ubuntu
 ```
 
-The underlying operating system is Ubuntu 16.04 Xenial Xerus, so you can follow
-any Ubuntu documentation or tutorials on the internet. The VM image runs a
-faster and lighter-weight window manager to speed things up, but the underlying
-operating system is still Ubuntu.
+The underlying operating system is Lubuntu 16.04 Xenial Xerus, so you can follow
+any Lubuntu (or Ubuntu) documentation or tutorials on the internet.
 
 ### For Maintainers
 This image should work into the near future. However, if the guest's VirtualBox
@@ -73,7 +74,10 @@ release, the image will need to be rebuilt. Here are the steps:
 5. Clone this repository, and run the setup script: `sudo
    ./setup_vm.sh`. Then run the install script (`sudo
    ./install_emergent.sh`).
-6. From VirtualBox, export the VM as an OVA archive.
+6. Create a desktop shortcut for emergent. For Lubuntu, run this in
+   the terminal: `lxshortcut -o ~/Desktop/emerent` and set it to execute
+   `/usr/local/bin/emergent`.
+7. From VirtualBox, export the VM as an OVA archive.
 
 ### Support
 You can file an issue on the Github repository, or email Daniel Greenidge.
