@@ -21,7 +21,8 @@ $ brew cask install virtualbox
 
 ### Getting Started
 
-**Step 1:** Download the VM image here. (TODO: make link)
+**Step 1:** Download the VM image here. (TODO: make link). It doesn't matter
+where you put the file, and you can delete it once the VM is installed.
 
 **Step 2:** Import the image into VirtualBox. From the VirtualBox home screen,
 select *File* > *Import Appliance*. Choose the VM image and accept the default
