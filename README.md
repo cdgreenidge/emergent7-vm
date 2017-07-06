@@ -34,7 +34,7 @@ options.
 
 With the VM running,
 click *Devices* > *Shared Folders* > *Shared Folder Settings*. Click the small
-plus sign to add a shared folder. Make sure to check the "Read only" and "Make
+plus sign to add a shared folder. Make sure to check the "Auto mount" and "Make
 permanent" checkboxes.
 
 Once you've added the shared folder, reboot the VM. After it restarts, you will
