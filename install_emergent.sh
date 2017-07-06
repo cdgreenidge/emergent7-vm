@@ -4,16 +4,17 @@
 
 # The directory in which to install Quarter and Emergent. If you change this,
 # be sure to update emergent.desktop (the desktop shortcut) as well.
-export PREFIX=/usr/local
+PREFIX=/usr/local
 
 # The directory in which to install Qt
-export QTPREFIX=/opt/Qt5.2.1
+QTPREFIX=/opt/Qt5.2.1
 
 # The path to the QT installation
 export QTDIR=$QTPREFIX/5.2.1/gcc_64
 
+SCRIPTDIR=$(dirname $(realpath $0))
+
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
-export PATH=/usr/local/bin:$PATH
 export CFLAGS=-I/usr/include $CFLAGS
 export CXXFLAGS=-I/usr/include $CXXFLAGS
 
@@ -26,7 +27,7 @@ build-essential libfontconfig1-dev libfreetype6-dev libx11-dev libxfixes-dev \
 libxi-dev libxrender-dev libxcb1-dev libx11-xcb-dev libxcb-glx0-dev \
 libxcb-keysyms1-dev libxcb-image0-dev libxcb-shm0-dev libxcb-icccm4-dev \
 libxcb-sync0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-randr0-dev \
-libxcb-render-util0-dev xvfb libncurses-dev libsqlite3-dev \
+libxcb-render-util0-dev libncurses-dev libsqlite3-dev \
 libgstreamer-plugins-base0.10-dev libapr1-dev libaprutil1-dev libserf-dev \
 libserf-1-1 subversion"
     apt-get update
@@ -56,8 +57,7 @@ install_svn() {
 
 
 download_qt() {
-    cd /vagrant
-    ls
+    cd $SCRIPTDIR
     wget --progress=bar:force:noscroll \
 https://download.qt.io/archive/qt/5.2/5.2.1/qt-opensource-linux-x64-5.2.1.run
     chmod +x qt-opensource-linux-x64-5.2.1.run
@@ -65,13 +65,8 @@ https://download.qt.io/archive/qt/5.2/5.2.1/qt-opensource-linux-x64-5.2.1.run
 
 
 install_qt() {
-    cd /vagrant
-    # Start a virtual X framebuffer to keep the QT installer happy
-    Xvfb :10 -ac -screen 0 1024x768x24 &
-    PID=$!
-    DISPLAY=:10 ./qt-opensource-linux-x64-5.2.1.run --script qt-installer.qs
-    kill -15 $PID
-    rm qt-opensource-linux-x64-5.2.1.run
+    cd $SCRIPTDIR
+    ./qt-opensource-linux-x64-5.2.1.run --script qt-installer.qs
 }
 
 
@@ -142,8 +137,6 @@ loose_ends() {
 
     # Create shortcuts
     mkdir -p /home/ubuntu/Desktop
-    ln -s /vagrant /home/ubuntu/Desktop/vagrant
-    ln -s /vagrant /home/ubuntu/vagrant
     ln -s $PREFIX/bin/emergent /home/ubuntu/Desktop/emergent
 
     # Rebuild the dynamic library cache
@@ -164,6 +157,7 @@ echo "==> Downloading Qt5.2.1"
 download_qt
 
 echo "==> Installing Qt5.2.1 to /opt/Qt5.2.1"
+cd ~/Downloads
 install_qt
 
 echo "==> Downloading Open Dynamics Engine to /usr/local/src"

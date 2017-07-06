@@ -11,110 +11,69 @@ Emergent source code (just edit the code in `/usr/local/src/emergent-7.0.1`,
 and run `make && make install` to rebuild.)
 
 ### Prerequisites
+You need to install [VirtualBox](https://www.virtualbox.org). If you have a Mac
+and use the [Homebrew](https://brew.sh) package manager, this is as easy as
+executing
 
-> **Note**: You will need a cursory knowledge of the command line to use this
-> software. If you are not familiar with the command line, you can find a
-> crash course [here](https://learnpythonthehardway.org/book/appendixa.html).
-
-> **Warning**: The VM needs at least 4GB of memory to build Emergent. Your
-> computer should have >8GB to run the VM comfortably.
-
-You will need to install [Vagrant](https://www.vagrantup.com) and
-[VirtualBox](https://www.virtualbox.org). If you use macOS and have
-[Hombrew](https://brew.sh) installed (*highly* recommended), you can
-do this with the following command:
-
-```shell
-$ brew cask install vagrant virtualbox
+```
+$ brew cask install virtualbox
 ```
 
 ### Getting Started
 
-Clone this repository anywhere:
+**Step 1:** Download the VM image here. (TODO: make link)
 
-```shell
-$ git clone https://github.com/cdgreenidge/emergent7-vm
-```
+**Step 2:** Import the image into VirtualBox. From the VirtualBox home screen,
 
-If you're not comfortable with Git you can also download a zip file using the
-"Clone or Download" button at the top right.
+**Step 3:** Start the VM by double-clicking it on the VirtualBox home screen.
 
-Inside the `emergent7-vm` directory you will find a `Vagrantfile` and
-some scripts. To provision a virtual machine with Emergent7 installed,
-run both of these commands from the `emergent7-vm` directory:
+**Step 4:** Add a shared folder. To access files on your computer, you can share
+a folder between the host and guest operating systems. With the VM running,
+click *Devices* > *Shared Folders* > *Shared Folder Settings*. Click the small
+plus sign to add a shared folder. Make sure to check the "Read only" and "Make
+permanent" checkboxes.
 
-```
-$ vagrant plugin install vagrant-disksize
-$ vagrant up
-```
+Once you've added the shared folder, reboot the VM. After it restarts, you will
+find your shared folder in the sidebar of the "Files" application, and at the
+path /media/sf_your_shared_folder_name`.
 
-Once the scripts finish, which could take several hours, restart the
-VM:
+**Next steps**
 
-```
-$ vagrant halt
-$ vagrant up
-```
+You can access Emergent by double-clicking the shortcut on the desktop.
 
-### Using the VM
+If you want to modify and recompile the Emergent source code, you will find it
+in `/usr/local/src`.
 
-There are two ways to start the VM:
-
-1. Excute `vagrant up` from the `emergent7-vm` folder (recommended so that
-   synced folders work).
-2. Start the `vagrant-emergent7-01_default...` VM from the VirtualBox interface.
-
-Once you have started the VM, login with the following credentials:
+If you need root access for installing software or other tasks,
+the credentials are
 
 ```
-Username: ubuntu
-Password: ubuntu
+username: ubuntu
+password: ubuntu
 ```
 
-You can start Emergent either by executing the `emergent` command in a terminal,
-or double-clicking its desktop shortcut.
+The underlying operating system is Ubuntu 16.04 Xenial Xerus, so you can follow
+any Ubuntu documentation or tutorials on the internet. The VM image runs a
+faster and lighter-weight window manager to speed things up, but the underlying
+operating system is still Ubuntu.
 
-To share files between your computer and the VM, there is a special folder that
-syncs between the host and guest systems. On the host system (your computer)
-this is the `emergent7-vm` folder. On the guest system (the VM) this is located
-at `/vagrant` (also accessible from `~/vagrant`).
+### For Maintainers
+This image should work into the near future. However, if the guest's VirtualBox
+Guest Additions become too old, or if it is necessary to move to another Ubuntu
+release, the image will need to be rebuilt. Here are the steps:
 
-### Gory Details
-Here is what all the scripts are for:
-
-- *Vagrantfile*: Contains the VM configuration.
-- *install_emergent.sh*: Installs Emergent (and all of its dependencies).
-- *setup_vm.sh*: Updates the VM and fixes permissions.
-- *qt-installer.qs*: Automates the QT installer interface so it can be run
-  in a script.
-
-Here is what the scripts do (starting from a clean Ubuntu Xenial
-server install):
-
-1. Install Ubuntu desktop and VirtualBox guest additions
-2. Install QT 5.1.2 to `/opt/Qt5.1.2`
-3. Install as many emergent dependencies as possible from the Xenial
-  repositories
-4. Install Subversion, Open Dynamics Engine, and Quarter from source. All
-  software from source is installed into `/usr/local`: tarballs are in
-  `/usr/local/src/tars`, source trees are in `/usr/local/src`, binaries are in
-  `/usr/local/bin`, etc.
-5. Install Emergent from source
-
-### Uninstalling
-First, remove the VM. From the `emergent7-vm` directory:
-
-```shell
-$ vagrant destroy
-```
-
-Now, uninstall Vagrant and VirtualBox. If you used Homebrew to install them, you
-can do this with
-
-```
-$ brew cask uninstall vagrant virtualbox
-$ brew cleanup
-```
+1. Install the latest Lubuntu LTS desktop edition into a VirtualBox
+   VM. Be sure to make a dynamically-expanding hard drive (I set the
+   cap to 64GB.) Set the username and password to be `ubuntu` and
+   `ubuntu`, respectively. Enable automatic login.
+2. Update the system packages: `sudo apt-get update && sudo apt-get upgrade`.
+3. Install the VirtualBox Guest Additions from the provided ISO (see
+   documentation
+   [here](https://www.virtualbox.org/manual/ch04.html#idm1959).
+5. Clone this repository, and run the setup script: `sudo
+   ./setup_vm.sh`. Then run the install script (`sudo
+   ./install_emergent.sh`).
+6. From VirtualBox, export the VM as an OVA archive.
 
 ### Support
 You can file an issue on the Github repository, or email Daniel Greenidge.
