@@ -38,7 +38,7 @@ permanent" checkboxes.
 
 Once you've added the shared folder, reboot the VM. After it restarts, you will
 find your shared folder in the sidebar of the "Files" application, and at the
-path /media/sf_your_shared_folder_name`.
+path `/media/sf_your_shared_folder_name`.
 
 **Next steps**
 
@@ -70,7 +70,7 @@ release, the image will need to be rebuilt. Here are the steps:
 2. Update the system packages: `sudo apt-get update && sudo apt-get upgrade`.
 3. Install the VirtualBox Guest Additions from the provided ISO (see
    documentation
-   [here](https://www.virtualbox.org/manual/ch04.html#idm1959).
+   [here](https://www.virtualbox.org/manual/ch04.html#idm1959)).
 5. Clone this repository, and run the setup script: `sudo
    ./setup_vm.sh`. Then run the install script (`sudo
    ./install_emergent.sh`).
